@@ -1,0 +1,21 @@
+<div class="seats">
+	<span class="bigNum <%=get_color_class(@seats)%>"><%=@seats%></span>
+</div>
+<div class="avail">seats available</div>
+<div class="seats_stats">
+	<% if @currentstats.minutediff.to_i < 0 %>
+		<%= image_tag "arrow_down.gif" %><span class="level2"><%=@currentstats.minutediff%> seats in last minute</span><br/>
+	<% elsif @currentstats.minutediff.to_i > 0 %>
+		<%= image_tag "arrow_up.gif" %><span class="level5">+<%=@currentstats.minutediff%> seats in last minute</span><br/>
+	<% elsif @currentstats.minutediff.to_i == 0 %>
+		No change in last minute<br />
+	<% end %>
+
+	<% if @currentstats.hourdiff.to_i < 0 %>
+		<%= image_tag "arrow_down.gif" %><span class="level2"><%=@currentstats.hourdiff%> seats in last hour</span><br/>
+	<% elsif @currentstats.hourdiff.to_i > 0 %>
+		<%= image_tag "arrow_up.gif" %><span class="level5">+<%=@currentstats.hourdiff%> seats in last hour</span><br/>
+	<% elsif @currentstats.hourdiff.to_i == 0 %>
+		No change in last hour<br />
+	<% end %>
+</div>
