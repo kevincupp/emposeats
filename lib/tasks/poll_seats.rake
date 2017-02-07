@@ -2,7 +2,6 @@ require 'net/http'
 
 task :poll_seats => [:environment] do
 	url = URI.parse('https://empo-apps.emporium.vt.edu/checkin/listfreeemporiumseats')
-	http = Net::HTTP.new(url.host, url.port)
 	req = Net::HTTP::Get.new(url.to_s)
 	http = Net::HTTP.new(url.host, url.port)
 	http.use_ssl = true
