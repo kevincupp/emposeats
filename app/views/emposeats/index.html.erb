@@ -13,7 +13,7 @@
 
 		<div class="counter">
 			<div class="refresh">
-				<%= render "emposeats/seats" %>
+				<%= render partial: 'emposeats/seats', locals: {seats: @seats, currentstats: @currentstats } %>
 			</div>
 		</div>
 
