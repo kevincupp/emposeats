@@ -6,13 +6,11 @@ class EmposeatsController < ApplicationController
 		@currentstats = CurrentStats.first
 	end
 
-	def test
-		@seats = EmptySeats.order(id: :desc).first.seats
-		@currentstats = CurrentStats.first
-		@markup = render partial: "seats"
+	def self.broadcast_new_seats
+		seats = EmptySeats.order(id: :desc).first.seats
+		currentstats = CurrentStats.first
+		markup = render partial: 'emposeats/seats', locals: {seats: seats, currentstats: currentstats }
 
-		ActionCable.server.broadcast 'seats',
-			markup: @markup
-		head :ok
+		ActionCable.server.broadcast 'seats', markup: markup
 	end
 end
