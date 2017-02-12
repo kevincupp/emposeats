@@ -1,0 +1,26 @@
+<chart chartTopMargin='20' chartBottomMargin='10' labelStep='2' bgColor='#FFFFFF' bgAlpha='100' borderColor='FFFFFF' yAxisMinValue='0' showValues='0' alternateHGridColor='999999' alternateHGridAlpha='10' divLineColor='999999' divLineAlpha='15' canvasbgColor='FFFFFF' canvasbgAlpha='0' showBorder='0' borderAlpha='0' canvasBorderColor='FFFFFF' baseFontColor='141414' baseFont='Arial' toolTipBorderColor='FFFFFF'>
+
+	<% @future_hours.each do |hour| %>
+		<set label='<%=hour[:time]%>' value='<%=hour[:average]%>' toolText='Projected: <%=hour[:time]%>, <%=hour[:average]%> (&#177; <%=hour[:std_dev]%>)' color='<%=get_std_dev_accuracy_color(hour[:std_dev])%>' />
+	<% end %>\
+
+	<styles>
+		<definition>
+			<style name='Anim1' type='animation' param='_xscale' start='0' duration='1' />
+			<style name='Anim2' type='animation' param='_alpha' start='0' duration='0.6' />
+			<style name='DataShadow' type='Shadow' alpha='40'/>
+		</definition>
+		<definition>
+            <style name='myToolTipFont' type='font' font='Arial' size='12' color='1D1D1D'/>
+        </definition>
+        <application>
+            <apply toObject='ToolTip' styles='myToolTipFont' />
+        </application>
+		<application>
+			<apply toObject='DIVLINES' styles='Anim1' />
+			<apply toObject='HGRID' styles='Anim2' />
+			<apply toObject='DATALABELS' styles='DataShadow,Anim2' />
+	</application>
+	</styles>
+
+</chart>

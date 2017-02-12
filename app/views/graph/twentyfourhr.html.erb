@@ -1,0 +1,31 @@
+<chart chartTopMargin='20' zeroPlaneAlpha='0' showYAxisValues='0' chartBottomMargin='10' bgColor='#FFFFFF' bgAlpha='100' borderColor='FFFFFF' yAxisMinValue='<%=@today.minimum(:seats)-10%>' yAxisMaxValue='<%=@today.maximum(:seats)+10%>' divLineIsDashed='0' numDivLines='3' showAlternateHGridColor='0' showValues='0' divLineColor='999999' divLineAlpha='50' canvasbgColor='FFFFFF' canvasbgAlpha='0' showBorder='0' borderAlpha='0' canvasBorderColor='FFFFFF' baseFontColor='141414' lineThickness='1' drawAnchors='0' plotFillColor='E9E9E9' plotFillRatio='100' anchorRadius='4' anchorBorderThickness='1' anchorBorderColor='FFFFFF' anchorBgColor='000000' numVisiblePlot='30' numVDivLines='7' vDivLineColor='CCCCCC' vDivLineIsDashed='0' baseFont='Arial'>
+
+	<categories>
+		<% @today.reverse.each_with_index do |today, i| %>
+			<% if i % 120 == 0 %>
+				<category label='<%=today.formatted_time%>' />
+			<% else %>
+				<category label='' />
+			<% end %>
+		<% end %>
+	</categories>
+
+	<dataset seriesName='Yesterday' color="#999999">
+		<% @yesterday.reverse.each do |yesterday| %>
+			<set value='<%=yesterday.seats%>' />
+		<% end %>
+	</dataset>
+
+	<dataset seriesName='Today' color="#000000">
+		<% @today.reverse.each do |today| %>
+			<set value='<%=today.seats%>' />
+		<% end %>
+	</dataset>
+
+	<trendLines>
+	<line dashed='1' startValue='<%=@today.maximum(:seats)%>' color='<%=get_color_code(@today.maximum(:seats))%>' displayvalue='Max = <%=@today.maximum(:seats)%>' valueOnRight='1' />
+	<line dashed='1' startValue='<%=@today.minimum(:seats)%>' color='<%=get_color_code(@today.minimum(:seats))%>' displayvalue='Min = <%=@today.minimum(:seats)%>' valueOnRight='1' />
+		<line dashed='1' startValue='<%=@today.average(:seats)%>' color='<%=get_color_code(@today.average(:seats))%>' displayvalue='Avg = <%=@today.average(:seats)%>' valueOnRight='1' />
+	</trendLines>
+
+</chart>

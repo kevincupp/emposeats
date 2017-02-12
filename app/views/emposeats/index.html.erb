@@ -19,100 +19,64 @@
 
 		<div class="graph">
 
-
 			<ul id="graph-links">
-
-				<li id="24hr" class="active"><a href="javascript: void(0)" onClick="show24hr();">Past 24 Hours</a></li>
-				<li id="minutes"><a href="javascript: void(0)" onClick="showMinutes();">Availability by Minute</a></li>
-				<li id="hours"><a href="javascript: void(0)" onClick="showHours();">Availability by Hour</a></li>
-				<li id="days"><a href="javascript: void(0)" onClick="showDays();">Availability by Day</a></li>
-				<li id="hours_pred"><a href="javascript: void(0)" onClick="showHours_pred();">Next 24 Hours</a></li>
-				<li id="days_pred"><a href="javascript: void(0)" onClick="showDays_pred();">Next 7 Days</a></li>
-
+				<li class="active"><a href="#" data-graph="24hr">Past 24 Hours</a></li>
+				<li><a href="#" data-graph="minutes">Availability by Minute</a></li>
+				<li><a href="#" data-graph="hours">Availability by Hour</a></li>
+				<li><a href="#" data-graph="days">Availability by Day</a></li>
+				<li><a href="#" data-graph="future-hours">Next 24 Hours</a></li>
+				<li><a href="#" data-graph="future-days">Next 7 Days</a></li>
 			</ul>
 
-            <div id="graph-minutes" style="display:none;">
-				<div id="chartdiv" style="text-align:right;">
-
-	            </div>
-			<script type="text/javascript">
-				var chart = new FusionCharts("swf/Line.swf", "ChartId", "570", "220", "0", "0");
-				chart.setDataURL("php/old/minutes.php");
-				chart.render("chartdiv");
-			</script>
-			</div>
 			<div id="graph-hours" style="display:none;">
-				<div id="chartdiv2" style="text-align:right;">
-
-	            </div>
-			<script type="text/javascript">
-				var chart = new FusionCharts("swf/Column3D.swf", "ChartId", "580", "220", "0", "0");
-				chart.setDataURL("php/old/hours.php");
-				chart.render("chartdiv2");
-			</script>
+				<div id="chartdiv2" style="text-align:right;"></div>
+				<script type="text/javascript">
+					var chart = new FusionCharts("swf/Column3D.swf", "ChartId", "580", "220", "0", "0");
+					chart.setDataURL("graph/hours");
+					chart.render("chartdiv2");
+				</script>
 			</div>
-			<div id="graph-days" style="display:none;">
-				<div id="chartdiv3" style="text-align:right;">
 
-	            </div>
-			<script type="text/javascript">
-				var chart = new FusionCharts("swf/Column3D.swf", "ChartId", "580", "220", "0", "0");
-				chart.setDataURL("php/old/days.php");
-				chart.render("chartdiv3");
-			</script>
+			<div id="graph-minutes" style="display:none;">
+				<div id="chartdiv" style="text-align:right;"></div>
+				<script type="text/javascript">
+					var chart = new FusionCharts("swf/Line.swf", "ChartId", "570", "220", "0", "0");
+					chart.setDataURL("graph/minutes");
+					chart.render("chartdiv");
+				</script>
+			</div>
+
+			<div id="graph-days" style="display:none;">
+				<div id="chartdiv3" style="text-align:right;"></div>
+				<script type="text/javascript">
+					var chart = new FusionCharts("swf/Column3D.swf", "ChartId", "580", "220", "0", "0");
+					chart.setDataURL("graph/days");
+					chart.render("chartdiv3");
+				</script>
 			</div>
 			<div id="graph-24hr">
-				<div id="chartdiv4" style="text-align:right;">
-
-	            </div>
-			<script type="text/javascript">
-				var chart = new FusionCharts("swf/MSLine.swf", "ChartId", "580", "220", "0", "0");
-				chart.setDataURL("php/old/24hr.php");
-				chart.render("chartdiv4");
-			</script>
+				<div id="chartdiv4" style="text-align:right;"></div>
+				<script type="text/javascript">
+					var chart = new FusionCharts("swf/MSLine.swf", "ChartId", "580", "220", "0", "0");
+					chart.setDataURL("graph/24hr");
+					chart.render("chartdiv4");
+				</script>
 			</div>
-			<div id="graph-minutes-pred" style="display:none;">
-
-				<div id="chartdiv5" style="text-align:right;">
-
-	            </div>
-			<script type="text/javascript">
-				var chart = new FusionCharts("swf/Column3D.swf", "ChartId", "580", "220", "0", "0");
-				chart.setDataURL("php/old/minutes_future.php");
-				chart.render("chartdiv5");
-			</script>
+			<div id="graph-future-hours" style="display:none;">
+				<div id="chartdiv6" style="text-align:right;"></div>
+				<script type="text/javascript">
+					var chart = new FusionCharts("swf/Column3D.swf", "ChartId", "580", "220", "0", "0");
+					chart.setDataURL("graph/future_hours");
+					chart.render("chartdiv6");
+				</script>
 			</div>
-			<div id="graph-hours-pred" style="display:none;">
-
-				<div id="chartdiv6" style="text-align:right;">
-
-	            </div>
-			<script type="text/javascript">
-				var chart = new FusionCharts("swf/Column3D.swf", "ChartId", "580", "220", "0", "0");
-				chart.setDataURL("php/old/hours_future.php");
-				chart.render("chartdiv6");
-			</script>
-			</div>
-			<div id="graph-days-pred" style="display:none;">
-
-				<div id="chartdiv7" style="text-align:right;">
-
-	            </div>
-			<script type="text/javascript">
-				var chart = new FusionCharts("swf/Column3D.swf", "ChartId", "580", "220", "0", "0");
-				chart.setDataURL("php/old/days_future.php");
-				chart.render("chartdiv7");
-			</script>
-			</div>
-			<div id="graph-24hr-pred" style="display:none;">
-				<div id="chartdiv8" style="text-align:right;">
-
-	            </div>
-			<script type="text/javascript">
-				var chart = new FusionCharts("swf/MSLine.swf", "ChartId", "580", "160", "0", "0");
-				chart.setDataURL("php/old/24hr_future.php");
-				chart.render("chartdiv8");
-			</script>
+			<div id="graph-future-days" style="display:none;">
+				<div id="chartdiv7" style="text-align:right;"></div>
+				<script type="text/javascript">
+					var chart = new FusionCharts("swf/Column3D.swf", "ChartId", "580", "220", "0", "0");
+					chart.setDataURL("graph/future_days");
+					chart.render("chartdiv7");
+				</script>
 			</div>
 
 		</div>
@@ -124,7 +88,6 @@
 	<div class="content">
 
 		<h2 style="margin:0 0 15px 0;padding:0;">Daily Usage</h2>
-
 
 		<table width="920" cellpadding="5" cellspacing="0" border="0">
 		<tr class="table_header">
