@@ -11,11 +11,11 @@ class EmptySeats < ActiveRecord::Base
     EmposeatsController.broadcast_new_seats
   end
 
-  def formatted_time()
+  def formatted_time
     DateTime.parse(self.date).strftime('%l:%M').strip
   end
 
-  def formatted_hour()
+  def formatted_hour
     DateTime.parse(self.date).strftime('%l%p').strip
   end
 end
