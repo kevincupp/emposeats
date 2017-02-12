@@ -13,19 +13,12 @@ class GraphController < ApplicationController
   def hours
     today = EmptySeats.order(id: :desc).limit(1440)
 
-    hours = {}
-    today.reverse.each do |row|
-      hour = row.formatted_hour
-      if !hours.key?(hour)
-        hours[hour] = []
-      end
-      hours[hour].push(row.seats)
-    end
-
     @hours = {}
-    hours.each do |hour, seats|
-      @hours[hour] = seats.average
-    end
+    today.reverse.chunk { |minute|
+      minute.formatted_hour
+    }.each { |hour, array|
+      @hours[hour] = array.collect(&:seats).average
+    }
   end
 
   def days
