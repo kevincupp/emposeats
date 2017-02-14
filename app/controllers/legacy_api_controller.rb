@@ -23,9 +23,18 @@ class LegacyApiController < ApplicationController
       date = Date.parse(stat.date).strftime('%a, %d %b %Y')
       @stats.push({
         dailystat: stat,
-        sparkline: EmptySeats.where("date LIKE '#{date}%'").order(id: :asc)
+        sparkline: sparkline_for_date(stat.date)
       })
     end
     render content_type: 'text/xml', layout: false
+  end
+
+  def sparkline_for_date(date)
+    date_string = Time.parse(date).strftime('%a, %d %b %Y')
+    epoch = Time.parse(date).strftime('%s')
+
+    Rails.cache.fetch("seats-#{epoch}", expires_in: 15.days) do
+      EmptySeats.where("date LIKE '#{date_string}%'").order(id: :asc)
+    end
   end
 end
