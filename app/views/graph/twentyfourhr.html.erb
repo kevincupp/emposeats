@@ -25,7 +25,7 @@
 	<trendLines>
 	<line dashed='1' startValue='<%=@today.maximum(:seats)%>' color='<%=get_color_code(@today.maximum(:seats))%>' displayvalue='Max = <%=@today.maximum(:seats)%>' valueOnRight='1' />
 	<line dashed='1' startValue='<%=@today.minimum(:seats)%>' color='<%=get_color_code(@today.minimum(:seats))%>' displayvalue='Min = <%=@today.minimum(:seats)%>' valueOnRight='1' />
-		<line dashed='1' startValue='<%=@today.average(:seats)%>' color='<%=get_color_code(@today.average(:seats))%>' displayvalue='Avg = <%=@today.average(:seats)%>' valueOnRight='1' />
+		<line dashed='1' startValue='<%=@today.average(:seats).round%>' color='<%=get_color_code(@today.average(:seats).round)%>' displayvalue='Avg = <%=@today.average(:seats).round%>' valueOnRight='1' />
 	</trendLines>
 
 </chart>
