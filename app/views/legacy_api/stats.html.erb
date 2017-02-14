@@ -1,0 +1,20 @@
+<empo>
+	<% @stats.each do |stats| %>
+		<item>
+			<date><%=Date.parse(stats[:dailystat].date).strftime('%a %-m/%-d')%></date>
+			<longdate><%=Date.parse(stats[:dailystat].date).strftime('%B %e, %Y')%></longdate>
+			<weekday><%=Date.parse(stats[:dailystat].date).strftime('%A')%></weekday>
+			<average><%=stats[:dailystat].average%></average>
+			<busy><%=stats[:dailystat].busy%></busy>
+			<calm><%=stats[:dailystat].calm%></calm>
+			<checkins><%=stats[:dailystat].checkins%></checkins>
+			<sparkline>
+				<% stats[:sparkline].each_with_index do |minute, i| %>
+					<% if i % 60 == 0 %>
+						<data><%=minute.seats%></data>
+					<% end %>
+				<% end %>
+			</sparkline>
+		</item>
+	<% end %>
+</empo>

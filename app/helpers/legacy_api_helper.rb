@@ -1,0 +1,2 @@
+module LegacyApiHelper
+end

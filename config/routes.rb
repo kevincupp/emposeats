@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get '/graph/future_hours', to: 'graph#future_hours'
   get '/graph/future_days', to: 'graph#future_days'
 
+  get '/php/iphone/seats.php', to: 'legacy_api#seats'
+  get '/php/iphone/home_sparkline.php', to: 'legacy_api#sparkline'
+  get '/php/iphone/graph.php', to: 'legacy_api#graph'
+  get '/php/iphone/stats.php', to: 'legacy_api#stats'
+
   mount ActionCable.server => '/cable'
   get '/test', to: 'emposeats#test'
 end

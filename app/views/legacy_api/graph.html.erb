@@ -1,0 +1,10 @@
+<empo>
+	<% @minutes.reverse.each do |minute| %>
+		<% if Time.parse(minute.date).strftime('%M') == '00' %>
+			<item>
+				<date><%=Time.parse(minute.date).strftime('%-l%P')%></date>
+				<seats><%=minute.seats%></seats>
+			</item>
+		<% end %>
+	<% end %>
+</empo>
