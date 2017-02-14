@@ -12,10 +12,10 @@ class EmptySeats < ActiveRecord::Base
   end
 
   def formatted_time
-    DateTime.parse(self.date).strftime('%l:%M').strip
+    DateTime.parse(self.date).strftime('%-l:%M')
   end
 
   def formatted_hour
-    DateTime.parse(self.date).strftime('%l%p').strip
+    DateTime.parse(self.date).strftime('%-l%p')
   end
 end

@@ -34,7 +34,7 @@ class GraphController < ApplicationController
       minutes = EmptySeats.where("date LIKE '#{day}% #{hour}:%'").order(id: :desc).limit(180).all
 
       @future_hours.push({
-        time: date.strftime('%l%p'),
+        time: date.strftime('%-l%p'),
         average: minutes.collect(&:seats).average,
         std_dev: minutes.collect(&:seats).std_dev
       })

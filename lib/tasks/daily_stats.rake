@@ -33,7 +33,7 @@ def hour_range(hour)
   hour1 = Time.parse(hour)
   hour2 = hour1 + 1.hour
 
-  hour1.strftime('%l:%M').strip + ' - ' + hour2.strftime('%l:%M%P').strip
+  hour1.strftime('%-l:%M') + ' - ' + hour2.strftime('%-l:%M%P')
 end
 
 # I don't quite understand this, copied logic from old site
