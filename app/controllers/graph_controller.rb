@@ -48,7 +48,7 @@ class GraphController < ApplicationController
 
   def future_days
     @future_days = []
-    (1..7).each do |i|
+    (0..6).each do |i|
       date = Time.new + i.day
       day = date.strftime('%a')
       days = DailyStat.where("date LIKE '#{day}%'").order(id: :desc).limit(2).all

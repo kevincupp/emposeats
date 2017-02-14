@@ -1,6 +1,6 @@
 <chart numVisiblePlot='10' chartTopMargin='20' chartBottomMargin='10' bgColor='#FFFFFF' bgAlpha='100' borderColor='FFFFFF' yAxisMinValue='0' divLineIsDashed='1' numDivLines='3' showAlternateHGridColor='0' showValues='0' yAxisValuesStep='4' divLineColor='999999' divLineAlpha='50' canvasbgColor='FFFFFF' canvasbgAlpha='0' showBorder='0' borderAlpha='0' canvasBorderColor='FFFFFF' baseFontColor='141414' lineColor='000000' lineThickness='3' drawAnchors='1' plotFillColor='E9E9E9' plotFillRatio='100' anchorRadius='4' anchorBorderThickness='1' anchorBorderColor='FFFFFF' anchorBgColor='000000' baseFont='Arial'>
 
-	<% @days.each do |day| %>
+	<% @days.reverse.each do |day| %>
 		<set label='<%=day.formatted_short_day%>' value='<%=day.average%>' color='<%=get_color_code(day.average)%>' />
 	<% end %>
 
