@@ -16,5 +16,4 @@ Rails.application.routes.draw do
   get '/php/iphone/stats.php', to: 'legacy_api#stats'
 
   mount ActionCable.server => '/cable'
-  get '/test', to: 'emposeats#test'
 end
