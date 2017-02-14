@@ -3,7 +3,7 @@ class GraphController < ApplicationController
 
   def twentyfourhr
     @today = EmptySeats.order(id: :desc).limit(1440)
-    @yesterday = EmptySeats.order(id: :desc).limit(1440).offset(1440)
+    @yesterday = @today.offset(1440)
   end
 
   def minutes
