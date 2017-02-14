@@ -1,4 +1,4 @@
-<chart chartTopMargin='20' zeroPlaneAlpha='0' showYAxisValues='0' chartBottomMargin='10' bgColor='#FFFFFF' bgAlpha='100' borderColor='FFFFFF' yAxisMinValue='<%=@today.minimum(:seats)-10%>' yAxisMaxValue='<%=@today.maximum(:seats)+10%>' divLineIsDashed='0' numDivLines='3' showAlternateHGridColor='0' showValues='0' divLineColor='999999' divLineAlpha='50' canvasbgColor='FFFFFF' canvasbgAlpha='0' showBorder='0' borderAlpha='0' canvasBorderColor='FFFFFF' baseFontColor='141414' lineThickness='1' drawAnchors='0' plotFillColor='E9E9E9' plotFillRatio='100' anchorRadius='4' anchorBorderThickness='1' anchorBorderColor='FFFFFF' anchorBgColor='000000' numVisiblePlot='30' numVDivLines='7' vDivLineColor='CCCCCC' vDivLineIsDashed='0' baseFont='Arial'>
+<chart chartTopMargin='20' zeroPlaneAlpha='0' showYAxisValues='0' chartBottomMargin='10' bgColor='#FFFFFF' bgAlpha='100' borderColor='FFFFFF' yAxisMinValue='<%=@min-10%>' yAxisMaxValue='<%=@max+10%>' divLineIsDashed='0' numDivLines='3' showAlternateHGridColor='0' showValues='0' divLineColor='999999' divLineAlpha='50' canvasbgColor='FFFFFF' canvasbgAlpha='0' showBorder='0' borderAlpha='0' canvasBorderColor='FFFFFF' baseFontColor='141414' lineThickness='1' drawAnchors='0' plotFillColor='E9E9E9' plotFillRatio='100' anchorRadius='4' anchorBorderThickness='1' anchorBorderColor='FFFFFF' anchorBgColor='000000' numVisiblePlot='30' numVDivLines='7' vDivLineColor='CCCCCC' vDivLineIsDashed='0' baseFont='Arial'>
 
 	<categories>
 		<% @today.reverse.each_with_index do |today, i| %>
@@ -23,9 +23,9 @@
 	</dataset>
 
 	<trendLines>
-	<line dashed='1' startValue='<%=@today.maximum(:seats)%>' color='<%=get_color_code(@today.maximum(:seats))%>' displayvalue='Max = <%=@today.maximum(:seats)%>' valueOnRight='1' />
-	<line dashed='1' startValue='<%=@today.minimum(:seats)%>' color='<%=get_color_code(@today.minimum(:seats))%>' displayvalue='Min = <%=@today.minimum(:seats)%>' valueOnRight='1' />
-		<line dashed='1' startValue='<%=@today.average(:seats).round%>' color='<%=get_color_code(@today.average(:seats).round)%>' displayvalue='Avg = <%=@today.average(:seats).round%>' valueOnRight='1' />
+	<line dashed='1' startValue='<%=@max%>' color='<%=get_color_code(@max)%>' displayvalue='Max = <%=@max%>' valueOnRight='1' />
+	<line dashed='1' startValue='<%=@min%>' color='<%=get_color_code(@min)%>' displayvalue='Min = <%=@min%>' valueOnRight='1' />
+		<line dashed='1' startValue='<%=@average%>' color='<%=get_color_code(@average)%>' displayvalue='Avg = <%=@average%>' valueOnRight='1' />
 	</trendLines>
 
 </chart>

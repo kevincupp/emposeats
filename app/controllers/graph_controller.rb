@@ -4,10 +4,15 @@ class GraphController < ApplicationController
   def twentyfourhr
     @today = EmptySeats.order(id: :desc).limit(1440)
     @yesterday = @today.offset(1440)
+
+    @min = @today.collect(&:seats).min
+    @max = @today.collect(&:seats).max
+    @average = @today.collect(&:seats).average
   end
 
   def minutes
-    @minutes = EmptySeats.order(id: :desc).limit(60)
+    @minutes = EmptySeats.order(id: :desc).limit(30)
+    @min = @minutes.collect(&:seats).min
   end
 
   def hours
