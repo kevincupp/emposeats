@@ -2,8 +2,8 @@
 
 	<categories>
 		<% @today.reverse.each_with_index do |today, i| %>
-			<% if i % 120 == 0 %>
-				<category label='<%=today.formatted_time%>' />
+			<% if (@today.length - i - 1) % 120 == 0 %>
+				<category label='<%=today.formatted_time%> <%=i%>' />
 			<% else %>
 				<category label='' />
 			<% end %>
