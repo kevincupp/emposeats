@@ -1,8 +1,8 @@
 class EmposeatsController < ApplicationController
   def index
-    @quote = BTTFQuote.order("RAND()").first.quote
-    @dailystats = DailyStat.order(id: :desc).limit(15)
-    @seats = EmptySeats.order(id: :desc).first.seats
+    @quote = BTTFQuote.random
+    @dailystats = DailyStat.latest.limit(15)
+    @seats = EmptySeats.latest.first.seats
     @currentstats = CurrentStats.first
   end
 end

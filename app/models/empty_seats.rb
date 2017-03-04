@@ -3,6 +3,20 @@ class EmptySeats < ActiveRecord::Base
 
   before_save :default_values
   after_create :broadcast_cable
+
+  scope :latest, -> { order(id: :desc) }
+  scope :today, -> { latest.limit(1440) }
+  scope :yesterday, -> { today.offset(1440) }
+  scope :find_by_date, -> (date) {
+    day = date.strftime('%a')
+    hour = date.strftime('%H')
+    where("date LIKE '#{day}% #{hour}:%'").latest
+  }
+
+  def self.all_seats
+    pluck(:seats)
+  end
+
   def default_values
     self.date ||= Time.new.strftime('%a, %d %b %Y %H:%M:%S %z')
   end

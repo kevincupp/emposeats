@@ -1,22 +1,22 @@
 class LegacyApiController < ApplicationController
   def seats
-    @seats = EmptySeats.order(id: :desc).first.seats
+    @seats = EmptySeats.latest.first.seats
     @currentstats = CurrentStats.first
     render content_type: 'text/xml', layout: false
   end
 
   def sparkline
-    @seats = EmptySeats.order(id: :desc).limit(60).collect(&:seats)
+    @seats = EmptySeats.latest.limit(60).all_seats
     render content_type: 'text/xml', layout: false
   end
 
   def graph
-    @minutes = EmptySeats.order(id: :desc).limit(1440)
+    @minutes = EmptySeats.today
     render content_type: 'text/xml', layout: false
   end
 
   def stats
-    dailystats = DailyStat.order(id: :desc).limit(15)
+    dailystats = DailyStat.latest.limit(15)
 
     @stats = []
     dailystats.each do |stat|

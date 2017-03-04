@@ -2,46 +2,44 @@ class GraphController < ApplicationController
   layout false
 
   def twentyfourhr
-    @today = EmptySeats.order(id: :desc).limit(1440)
-    @yesterday = @today.offset(1440)
+    @today = EmptySeats.today
+    @yesterday = EmptySeats.yesterday
 
-    @min = @today.collect(&:seats).min
-    @max = @today.collect(&:seats).max
-    @average = @today.collect(&:seats).average
+    @min = @today.all_seats.min
+    @max = @today.all_seats.max
+    @average = @today.all_seats.average
   end
 
   def minutes
-    @minutes = EmptySeats.order(id: :desc).limit(30)
-    @min = @minutes.collect(&:seats).min
+    @minutes = EmptySeats.latest.limit(30)
+    @min = @minutes.all_seats.min
   end
 
   def hours
-    today = EmptySeats.order(id: :desc).limit(1440)
+    today = EmptySeats.today
 
     @hours = {}
     today.reverse.chunk { |minute|
       minute.formatted_hour
     }.each { |hour, array|
-      @hours[hour] = array.collect(&:seats).average
+      @hours[hour] = array.pluck(:seats).average
     }
   end
 
   def days
-    @days = DailyStat.order(id: :desc).limit(14)
+    @days = DailyStat.latest.limit(14)
   end
 
   def future_hours
     @future_hours = []
     (1..24).each do |i|
       date = Time.new + i.hour
-      day = date.strftime('%a')
-      hour = date.strftime('%H')
-      minutes = EmptySeats.where("date LIKE '#{day}% #{hour}:%'").order(id: :desc).limit(180).all
+      minutes = EmptySeats.find_by_date(date).limit(180).all
 
       @future_hours.push({
         time: date.strftime('%-l%p'),
-        average: minutes.collect(&:seats).average,
-        std_dev: minutes.collect(&:seats).std_dev
+        average: minutes.all_seats.average,
+        std_dev: minutes.all_seats.std_dev
       })
     end
   end
@@ -50,13 +48,12 @@ class GraphController < ApplicationController
     @future_days = []
     (0..6).each do |i|
       date = Time.new + i.day
-      day = date.strftime('%a')
-      days = DailyStat.where("date LIKE '#{day}%'").order(id: :desc).limit(2).all
+      days = DailyStat.find_by_date(date).limit(2).all
 
       @future_days.push({
         time: date.strftime('%b %e'),
-        average: days.collect(&:average).average,
-        std_dev: days.collect(&:average).std_dev
+        average: days.averages.average,
+        std_dev: days.averages.std_dev
       })
     end
   end
