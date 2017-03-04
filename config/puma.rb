@@ -15,11 +15,13 @@ port        ENV.fetch("PORT") { 3000 }
 #
 environment ENV.fetch("RAILS_ENV") { "development" }
 
-app_dir = File.expand_path("../..", __FILE__)
-bind "unix://#{app_dir}/tmp/puma/puma.sock"
-pidfile "#{app_dir}/tmp/puma/puma.pid"
-state_path "#{app_dir}/tmp/puma/puma.state"
-activate_control_app
+if ENV.fetch("RAILS_ENV") == 'production'
+  app_dir = File.expand_path("../..", __FILE__)
+  bind "unix://#{app_dir}/tmp/puma/puma.sock"
+  pidfile "#{app_dir}/tmp/puma/puma.pid"
+  state_path "#{app_dir}/tmp/puma/puma.state"
+  activate_control_app
+end
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked webserver processes. If using threads and workers together
