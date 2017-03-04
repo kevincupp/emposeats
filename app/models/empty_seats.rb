@@ -8,7 +8,15 @@ class EmptySeats < ActiveRecord::Base
   end
 
   def broadcast_cable
-    EmposeatsController.broadcast_new_seats
+    markup = ApplicationController.renderer.render(
+      partial: 'emposeats/seats',
+      locals: {
+        :seats => EmptySeats.latest.first.seats,
+        :currentstats => CurrentStats.first
+      }
+    )
+
+    ActionCable.server.broadcast 'seats', markup: markup
   end
 
   def formatted_time
