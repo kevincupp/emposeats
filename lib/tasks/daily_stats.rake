@@ -3,9 +3,7 @@ task :daily_stats => [:environment] do
   date = yesterday.strftime('%a, %d %b %Y')
   minutes = EmptySeats.where("date LIKE '#{date} %'").order(id: :desc)
 
-  if minutes.empty?
-    exit
-  end
+  exit if minutes.empty?
 
   hours = hour_averages(minutes)
 
