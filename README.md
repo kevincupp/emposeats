@@ -1,24 +1,5 @@
-# README
+# EmpoSeats Rails App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a rewrite of the PHP application behind emposeats.com in Ruby on Rails.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+A lot of the markup, CSS and JS are original (old), this was mainly an exercise in building on Rails. I also used the old site's existing database schema, otherwise I would have done some things differently.
